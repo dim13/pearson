@@ -8,9 +8,6 @@ type digest struct {
 	tab [tabSize]byte
 }
 
-// Size of Pearson hash in bytes
-const Size = 1
-
 // New returns a new 8-bit Pearson hash.Hash
 func New() hash.Hash {
 	return &digest{tab: rfc3074}
@@ -33,7 +30,7 @@ func (d *digest) Reset() {
 }
 
 func (d *digest) Size() int {
-	return Size
+	return 1
 }
 
 func (d *digest) BlockSize() int {
