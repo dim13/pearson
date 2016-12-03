@@ -18,12 +18,18 @@ var testCases = []struct {
 }
 
 func TestHash(t *testing.T) {
-	h := New()
 	for _, tc := range testCases {
-		fmt.Fprint(h, tc.input)
-		if s := h.Sum(nil); s[0] != tc.result {
-			t.Errorf("expected %v, got %v", tc.result, s[0])
+		name := tc.input
+		if len(name) > 20 {
+			name = name[:20] + "..."
 		}
+		t.Run(name, func(t *testing.T) {
+			h := New()
+			fmt.Fprint(h, tc.input)
+			if s := h.Sum(nil); s[0] != tc.result {
+				t.Errorf("want %v, got %v", tc.result, s[0])
+			}
+		})
 	}
 }
 
