@@ -35,7 +35,8 @@ func TestHash(t *testing.T) {
 
 func BenchmarkHash(b *testing.B) {
 	h := New()
+	v := []byte("test")
 	for i := 0; i < b.N; i++ {
-		h.Write([]byte("test"))
+		h.Write(v)
 	}
 }
