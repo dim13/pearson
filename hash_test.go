@@ -6,18 +6,17 @@ import (
 	"testing"
 )
 
-var testCases = []struct {
-	input  string
-	result byte
-}{
-	{"", 0},
-	{"test", 47},
-	{"whatever", 27},
-	{"RFC 3074", 214},
-	{strings.Repeat("A", 300), 139},
-}
-
 func TestHash(t *testing.T) {
+	testCases := []struct {
+		input  string
+		result byte
+	}{
+		{"", 0},
+		{"test", 47},
+		{"whatever", 27},
+		{"RFC 3074", 214},
+		{strings.Repeat("A", 300), 139},
+	}
 	for _, tc := range testCases {
 		name := tc.input
 		if len(name) > 20 {
