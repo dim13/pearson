@@ -5,7 +5,7 @@ import "hash"
 
 type digest struct {
 	sum byte
-	tab [tabSize]byte
+	tab [256]byte
 }
 
 // New returns a new 8-bit Pearson hash.Hash
