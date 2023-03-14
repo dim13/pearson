@@ -6,6 +6,14 @@ import (
 	"testing"
 )
 
+func name(t *testing.T, s string) string {
+	t.Helper()
+	if len(s) > 20 {
+		return s[:20] + "..."
+	}
+	return s
+}
+
 func TestHash(t *testing.T) {
 	testCases := []struct {
 		input  string
@@ -18,11 +26,7 @@ func TestHash(t *testing.T) {
 		{strings.Repeat("A", 300), 139},
 	}
 	for _, tc := range testCases {
-		name := tc.input
-		if len(name) > 20 {
-			name = name[:20] + "..."
-		}
-		t.Run(name, func(t *testing.T) {
+		t.Run(name(t, tc.input), func(t *testing.T) {
 			h := New()
 			fmt.Fprint(h, tc.input)
 			if s := h.Sum(nil); s[0] != tc.result {
